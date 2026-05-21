@@ -21,6 +21,8 @@
                     <th scope="col">Nom</th>
                     <th scope="col">Prix (€)</th>
                     <th scope="col">Actions</th>
+                    <th scope="col">Edition</th>
+                    <th scope="col">Suppression</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,6 +32,12 @@
                         <td>{{ ingredient.name }}</td>
                         <td>{{ ingredient.price }}</td>
                         <td>{{ ingredient.createdAt|date('d/m/Y') }}</td>
+                        <td>
+                            <a href="{{ path('ingredient_edit', {'id': ingredient.id}) }}" class="btn btn-primary">Modifier</a>
+                        </td>
+                        <td>
+                            <a href="{{ path('ingredient_delete', {'id': ingredient.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet ingrédient ?')">Supprimer</a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
