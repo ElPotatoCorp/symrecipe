@@ -54,4 +54,27 @@ final class RecipeController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    #[Route('/recipe/edit/{id}', name: 'recipe_edit', methods: ['GET', 'POST'])]
+    public function edit(
+        Request $request,
+        EntityManagerInterface $manager,
+        Recipe $recipe
+    ): Response {
+        $form = $this->createForm(RecipeType::class, $recipe);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $manager->flush();
+
+            $this->addFlash('success', 'La recette a bien été modifiée !');
+
+            return $this->redirectToRoute('app_recipe');
+        }
+
+        return $this->render('pages/recipe/edit.html.twig', [
+            'form' => $form,
+        ]);
+    }
 }

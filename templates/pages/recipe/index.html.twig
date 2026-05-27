@@ -55,7 +55,7 @@
               </td>
               <td>{{ recipe.createdAt|date('d/m/Y') }}</td>
               <td>
-                <a href="#" class="btn btn-primary btn-sm">Modifier</a>
+                <a href="{{ path('recipe_edit', { id: recipe.id }) }}" class="btn btn-primary btn-sm">Modifier</a>
               </td>
 
               <td>
