@@ -50,9 +50,9 @@ class Recipe
     private ?\DateTimeImmutable $createdAt = null;
 
     /**
-     * @var Collection<int, ingredient>
+     * @var Collection<int, Ingredient>
      */
-    #[ORM\ManyToMany(targetEntity: ingredient::class, inversedBy: 'recipes')]
+    #[ORM\ManyToMany(targetEntity: Ingredient::class, inversedBy: 'recipes')]
     private Collection $ingredients;
 
     public function __construct()
@@ -163,14 +163,14 @@ class Recipe
     }
 
     /**
-     * @return Collection<int, ingredient>
+     * @return Collection<int, Ingredient>
      */
     public function getIngredients(): Collection
     {
         return $this->ingredients;
     }
 
-    public function addIngredient(ingredient $ingredient): static
+    public function addIngredient(Ingredient $ingredient): static
     {
         if (!$this->ingredients->contains($ingredient)) {
             $this->ingredients->add($ingredient);
@@ -179,7 +179,7 @@ class Recipe
         return $this;
     }
 
-    public function removeIngredient(ingredient $ingredient): static
+    public function removeIngredient(Ingredient $ingredient): static
     {
         $this->ingredients->removeElement($ingredient);
 
